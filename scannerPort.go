@@ -160,7 +160,7 @@ func main() {
 		for i := range hosts {
 			mac, host := scan.Arpscan_lan(hosts[i])
 			if isnotempty(host) {
-				go printer(mac, host, MAXPORT+1, "")
+				printer(mac, host, MAXPORT+1, "")
 				hosts_online = append(hosts_online, host)
 			}
 		}

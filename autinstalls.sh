@@ -5,7 +5,10 @@ if [ "$(id -u)" != "0" ]; then
 		exit 1
 	fi
 
-echo "For Working This script you need GOROOT enviroment variable set"
+if [-z "$GOROOT"]; then
+	echo "For Working This script you need GOROOT enviroment variable set"
+fi
+
 mkdir $GOROOT/src/scan 
 cp scan.go $GOROOT/src/scan/scan.go
 git clone https://github.com/j-keck/arping -o $GOROOT/src/arping

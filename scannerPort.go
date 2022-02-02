@@ -78,7 +78,7 @@ func isnotempty(s string) bool {
 }
 
 func man_menu() {
-	fmt.Print("go run scannerport.go -AP <IP>: Allports TCP Scan\n")
+	fmt.Print("go run scannerport.go -ap <IP>: Allports TCP Scan\n")
 	fmt.Print("go run scannerport.go <IP> Default Scan 1024 ports\n")
 	fmt.Print("go run scannerport.go  -ar 192.168.0.1/24 <IP>: ARP Ping Scan ALL local Subnet\n")
     fmt.Print("go run scannerport.go <IP> -pr <MINPORT> <MAXPORT>")

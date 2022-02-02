@@ -48,10 +48,6 @@ func port_parser(start_port int, finish_port int) (int, int) {
 		start_port = aux
 	}
 
-	if start_port <= MINPORT || finish_port >= MAXPORT {
-		fmt.Print("INVALID PORT \n")
-		man_menu()
-	}
 	return start_port, finish_port
 }
 func remove(s []string, index int) []string {

@@ -74,6 +74,8 @@ func scan_type(args []string) (int, int) {
 				} else {
 					start_port, finish_port = port_parser(start_port, finish_port)
 				}
+			} else {
+				fmt.Printf("Invalid finish port. Defaulting to 1024.\n")
 			}
 		}
 	}

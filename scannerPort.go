@@ -74,8 +74,6 @@ func scan_type(args []string) (int, int) {
 				} else {
 					start_port, finish_port = port_parser(start_port, finish_port)
 				}
-			} else {
-				fmt.Printf("Invalid finish port. Defaulting to 1024.\n")
 			}
 		}
 	}
@@ -136,7 +134,7 @@ func Args(arguments []string) (scansubnet bool, cidr string, args []string, ip s
 	}
 	return scansubnet, cidr, arguments, ip
 }
-func printer(host string, port int, service string) {
+func printer(mac string, host string, port int, service string) {
 	if !isnotempty(service) {
 		service = "Not Found"
 	}
@@ -146,9 +144,9 @@ func printer(host string, port int, service string) {
 	} else {
 		if strings.Contains(host, "Running") {
 			print(host + "\n")
-			fmt.Print("|HOST|\t|STATE|\n")
+			fmt.Print("|HOST|\t\t|STATE|\t|Mac Addresses|\n")
 		} else {
-			print(fmt.Sprintf("%s\tOnline\n", host))
+			print(fmt.Sprintf("%s\tOnline\t"+mac+"\n", host))
 		}
 
 	}
@@ -162,11 +160,12 @@ func main() {
 		if err != nil {
 			man_menu()
 		}
-		fmt.Print("|HOST|\t|STATE|\n")
+		fmt.Print("|HOST|\t|STATE|\t|Mac Addresses|\n")
 		for i := range hosts {
-			if isnotempty(scan.Arpscan_lan(hosts[i])) {
-				go printer(scan.Arpscan_lan(hosts[i]), MAXPORT+1, "")
-				hosts_online = append(hosts_online, hosts[i])
+			mac, host := scan.Arpscan_lan(hosts[i])
+			if isnotempty(host) {
+				go printer(mac, host, MAXPORT+1, "")
+				hosts_online = append(hosts_online, host)
 			}
 		}
 		if scansubnet {
@@ -177,7 +176,7 @@ func main() {
 				fmt.Printf("|PORT|\t|STATUS|\t|Service|\n")
 				for j := start_port; j < finish_port; j++ {
 					if scan.Tcp_scan(hosts_online[i], j) != 0 {
-						printer(hosts_online[i], scan.Tcp_scan(hosts_online[i], j), getService(ports_list, j))
+						printer("", hosts_online[i], scan.Tcp_scan(hosts_online[i], j), getService(ports_list, j))
 					}
 				}
 			}
@@ -191,7 +190,7 @@ func main() {
 			fmt.Printf("PORT" + "\t" + "STATUS " + "\t" + "Service" + "\n")
 			for j := start_port; j < finish_port; j++ {
 				if scan.Tcp_scan(ip, j) != 0 {
-					printer(ip, scan.Tcp_scan(ip, j), getService(ports_list, j))
+					printer("", ip, scan.Tcp_scan(ip, j), getService(ports_list, j))
 				}
 			}
 		}

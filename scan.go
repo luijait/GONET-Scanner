@@ -82,27 +82,29 @@ func Cdirgetter(cidr string) ([]string, error) {
 	}
 	return hosts, err
 }
-func Arpscan_lan(ips string) string {
+func Arpscan_lan(ips string) (string, string) {
 	ip := net.ParseIP(ips)
-	_, _, err := arping.Ping(ip)
+	arping.SetTimeout(10 * time.Millisecond)
+	HwAddr, _, err := arping.Ping(ip)
+	mac := HwAddr.String()
 	if err == arping.ErrTimeout {
-		return ""
+		return mac, ""
 	} else if err != nil {
 		if strings.Contains(err.Error(), "operation not") {
 			print("Please run as root\n")
 		} else if strings.Contains(err.Error(), "ip+net") {
-			return "Fail in net resources occurred Running again" + "\n"
+			return mac, "Fail in net resources occurred Running again" + "\n"
 			Arpscan_lan(ips)
 
 		} else if strings.Contains(err.Error(), "no usable interface found") {
-			return "Probably you put a CIDR outside ur net" + "\n"
+			return mac, "Probably you put a CIDR outside ur net" + "\n"
 			os.Exit(1)
 		} else {
-			return "Running again: Unknown Error succedeed for " + ips + "\n"
+			return mac, "Running again: Unknown Error succedeed for " + ips + "\n"
 			Arpscan_lan(ips)
 		}
 	} else {
-		return ips
+		return mac, ips
 	}
-	return "Error"
+	return mac, "Error"
 }

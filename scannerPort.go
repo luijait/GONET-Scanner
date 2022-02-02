@@ -49,7 +49,7 @@ func port_parser(start_port int, finish_port int) (int, int) {
 	}
 
 	if start_port <= MINPORT || finish_port >= MAXPORT {
-		fmt.Print("PUERTO NO VALIDO\n")
+		fmt.Print("INVALID PORT \n")
 		man_menu()
 	}
 	return start_port, finish_port
@@ -189,7 +189,7 @@ func main() {
 			fmt.Printf("PORT" + "\t" + "STATUS " + "\t" + "Service" + "\n")
 			for j := start_port; j < finish_port; j++ {
 				if scan.Tcp_scan(ip, j) != 0 {
-					printer(ip, scan.Tcp_scan(ip, j), getService(ports_list, i))
+					printer(ip, scan.Tcp_scan(ip, j), getService(ports_list, j))
 				}
 			}
 		}

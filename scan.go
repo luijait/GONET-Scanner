@@ -53,7 +53,7 @@ func socket(ip string, port int) (socket string) {
 }
 
 func Tcp_scan(ip string, port int) int {
-	connection, err := net.DialTimeout("tcp", socket(ip, port), 1*time.Second)
+	connection, err := net.DialTimeout("tcp", socket(ip, port), 30*time.Millisecond)
 	if err != nil {
 		if strings.Contains(err.Error(), "too many open files") {
 			time.Sleep(1 * time.Second)

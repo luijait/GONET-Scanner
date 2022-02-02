@@ -82,6 +82,7 @@ func Cdirgetter(cidr string) ([]string, error) {
 }
 func Arpscan_lan(ips string) (string) {
     ip := net.ParseIP(ips)
+    arping.SetTimeout(1*time.Second)
     _, _, err := arping.Ping(ip)
     if err == arping.ErrTimeout {
         return ""

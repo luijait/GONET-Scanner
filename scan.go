@@ -92,16 +92,22 @@ func Arpscan_lan(ips string) (string, string) {
 	} else if err != nil {
 		if strings.Contains(err.Error(), "operation not") {
 			print("Please run as root\n")
+			os.Exit(1)
 		} else if strings.Contains(err.Error(), "ip+net") {
 			return mac, "Fail in net resources occurred Running again" + "\n"
 			Arpscan_lan(ips)
 
 		} else if strings.Contains(err.Error(), "no usable interface found") {
+			print("You put CIDR of another net OR Try Run same as root\n")
+			os.Exit(0)
 			return mac, "Probably you put a CIDR outside ur net" + "\n"
-			os.Exit(1)
+
 		} else {
-			return mac, "Running again: Unknown Error succedeed for " + ips + "\n"
-			Arpscan_lan(ips)
+
+			print("Running again: Unknown Error succedeed try run program in root\n")
+			os.Exit(1)
+			return mac, "Running again: Unknown Error succedeed try run program in root\n"
+
 		}
 	} else {
 		return mac, ips

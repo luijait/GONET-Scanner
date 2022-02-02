@@ -31,9 +31,11 @@ func Ports() map[int]string {
         540:"UUCP",
         543:"klogin",
         544:"kshell",
+        
 
-
-
+        3389:"rdp"
+        6667:"irc"
+        25565:"minecraft"
     }
     return ports
 }

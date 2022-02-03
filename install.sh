@@ -5,6 +5,7 @@ if [ "$(id -u)" != "0" ]; then
 		echo
 		exit 1
 fi
+apt install golang
 Dir=$(go env | grep "GOROOT" | sed 's/\GOROOT="//g' | sed 's/\"//g')
 [ ! -d "$Dir/src/arping" ] && git clone https://github.com/j-keck/arping -o $Dir/src/arping || echo "Arping Already Installed"
 

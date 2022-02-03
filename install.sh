@@ -5,24 +5,15 @@ if [ "$(id -u)" != "0" ]; then
 		echo
 		exit 1
 fi
+Dir=$(go env | grep "GOROOT" | sed 's/\GOROOT="//g' | sed 's/\"//g')
+[ ! -d "$Dir/src/arping" ] && git clone https://github.com/j-keck/arping -o $Dir/src/arping || echo "Arping Already Installed"
 
-if [-z "$GOROOT"]; then
-    echo "GOROOT env variable not set. Please set it before executing this script."
-fi
+[ ! -d "$Dir/src/scan" ] && mkdir "$Dir/src/scan" || echo "Already exists scan"
 
-if [!-d "$GOROOT/src/arping"]; then
-    git clone https://github.com/j-keck/arping -o $GOROOT/src/arping
-fi
 
-if [!-d "$GOROOT/src/scan"];then
-    mkdir $GOROOT/src/scan
-fi
+[ ! -d "$Dir/src/ports" ] && mkdir "$Dir/src/ports" || echo "Already exists ports"
 
-if [!-d "$GOROOT/src/ports"]; then
-    mkdir $GOROOT/src/ports
-fi
-
-cp scan.go $GOROOT/src/scan
-cp ports.go $GOROOT/src/ports
+cp scan.go "$Dir/src/scan" 
+cp ports.go "$Dir/src/ports"
 
 go build scannerPort.go

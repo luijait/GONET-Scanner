@@ -1,5 +1,5 @@
 #!/bin/bash
 
-GOROOT=/opt/homebrew/opt/go/libexec/src/
+GOROOT=/usr/lib/go-1.17/src/
 cp scan.go $GOROOT/scan/
 cp ports.go $GOROOT/ports/

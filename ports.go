@@ -36,7 +36,7 @@ func Ports() map[int]string {
 		540:   "UUCP",
 		543:   "klogin",
 		544:   "kshell",
-		587:   "smtp",
+		587:   "submission",
 		993:   "IMAP over TLS",
 		995:   "POP3 over TLS",
 		1433:  "Microsoft SQL Server",
@@ -44,7 +44,7 @@ func Ports() map[int]string {
 		3389:  "rdp",
 		5432:  "postgres",
 		6667:  "irc",
-		25565: "minecraft",
+		25565: "minecraft server",
 	}
 	return ports
 }

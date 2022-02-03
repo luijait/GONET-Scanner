@@ -29,6 +29,7 @@ var (
 	err          error
 	scansubnet   bool
 	ports_list   map[int]string
+    mac string
 )
 
 func getService(ports map[int]string, port int) string {
@@ -140,7 +141,7 @@ func printer(mac string, host string, port int, service string) {
 	} else {
 		if strings.Contains(host, "Running") {
 			print(host + "\n")
-			fmt.Print("|HOST|\t\t|STATE|\t|Mac Addresses|\n")
+			fmt.Print("|HOST SCANNED|\t\t|STATE|\t\t|Mac Addresses|\n")
 		} else {
 			print(fmt.Sprintf("%s\tOnline\t"+mac+"\n", host))
 		}
@@ -156,7 +157,7 @@ func main() {
 		if err != nil {
 			man_menu()
 		}
-		fmt.Print("|HOST|\t|STATE|\t|Mac Addresses|\n")
+		fmt.Print("|HOST SCANNED|\t|STATE|\t|Mac Addresses|\n")
 		for i := range hosts {
 			mac, host := scan.Arpscan_lan(hosts[i])
 			if isnotempty(host) {
@@ -169,7 +170,7 @@ func main() {
 			for i := range hosts_online {
 				print("Currently scanning host: " + hosts_online[i] + "\n")
 
-				fmt.Printf("|PORT|\t|STATUS|\t|Service|\n")
+				fmt.Printf("|PORT|\t|STATUS|" + "|Service|" + "\n")
 				for j := start_port; j < finish_port; j++ {
 					if scan.Tcp_scan(hosts_online[i], j) != 0 {
 						printer("", hosts_online[i], scan.Tcp_scan(hosts_online[i], j), getService(ports_list, j))

@@ -81,11 +81,14 @@ func isnotempty(s string) bool {
 }
 
 func man_menu() {
+    fmt.Print("[ARGUMENTS]\n\n")
+    fmt.Print("-ar CIDR: ARP Discovery\n-ar CIDR -s: Scan ports in all hosts discovered\n-ap: Scan to 65535 Ports\n-pr MINPORT MAXPORT: Define Port Range to Scan\n\n")
+    fmt.Print("[EXAMPLES]\n\n")
 	fmt.Print("go run scannerport.go -ap <IP>: Allports TCP Scan\n")
-	fmt.Print("go run scannerport.go <IP> Default Scan 1024 ports\n")
+	fmt.Print("go run scannerport.go <IP> Default Scan 0-1024 ports\n")
 	fmt.Print("go run scannerport.go  -ar 192.168.0.1/24 <IP>: ARP Ping Scan ALL local Subnet\n")
-	fmt.Print("go run scannerport.go <IP> -pr <MINPORT> <MAXPORT>")
-	fmt.Print("go run scannerport.go -ar 192.168.1.1/24 -s")
+	fmt.Print("go run scannerport.go <IP> -pr <MINPORT> <MAXPORT>\n")
+	fmt.Print("go run scannerport.go -ar 192.168.1.1/24 -s\n")
 	fmt.Print("Example:", " go run scannerport.go -ar 192.168.1.1/24 (will send an arp ping to every host of net to discover if is it up)\n")
 	fmt.Print("Example: go run scannerport.go 192.168.0.1 -pr 100 3000 (will scan every port in these range you must put first minor port)")
 	os.Exit(0)
@@ -141,7 +144,7 @@ func printer(mac string, host string, port int, service string) {
 	} else {
 		if strings.Contains(host, "Running") {
 			print(host + "\n")
-			fmt.Print("|HOST SCANNED|\t\t|STATE|\t\t|Mac Addresses|\n")
+			fmt.Print("|HOST SCANNED|\t|STATE|\t|Mac Addresses|\n")
 		} else {
 			print(fmt.Sprintf("%s\tOnline\t"+mac+"\n", host))
 		}
@@ -170,7 +173,7 @@ func main() {
 			for i := range hosts_online {
 				print("Currently scanning host: " + hosts_online[i] + "\n")
 
-				fmt.Printf("|PORT|\t|STATUS|" + "|Service|" + "\n")
+				fmt.Printf("PORT\tSTATUS\tService\n")
 				for j := start_port; j < finish_port; j++ {
 					if scan.Tcp_scan(hosts_online[i], j) != 0 {
 						printer("", hosts_online[i], scan.Tcp_scan(hosts_online[i], j), getService(ports_list, j))

@@ -9,10 +9,10 @@ apt install golang
 Dir=$(go env | grep "GOROOT" | sed 's/\GOROOT="//g' | sed 's/\"//g')
 [ ! -d "$Dir/src/arping" ] && git clone https://github.com/j-keck/arping -o $Dir/src/arping
 
-[ ! -d "$Dir/src/scan" ] && mkdir "$Dir/src/scan" || echo "Already exists scan"
+[ ! -d "$Dir/src/scan" ] && mkdir "$Dir/src/scan" 
 
 
-[ ! -d "$Dir/src/ports" ] && mkdir "$Dir/src/ports" || echo "Already exists ports"
+[ ! -d "$Dir/src/ports" ] && mkdir "$Dir/src/ports" 
 
 cp scan.go "$Dir/src/scan" 
 cp ports.go "$Dir/src/ports"

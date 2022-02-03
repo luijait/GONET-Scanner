@@ -53,7 +53,7 @@ func socket(ip string, port int) (socket string) {
 }
 
 func Tcp_scan(ip string, port int) int {
-	connection, err := net.DialTimeout("tcp", socket(ip, port), 10*time.Millisecond)
+	connection, err := net.DialTimeout("tcp", socket(ip, port), 50*time.Millisecond)
 	if err != nil {
 		if strings.Contains(err.Error(), "too many open files") {
 			time.Sleep(1 * time.Second)
@@ -71,6 +71,10 @@ func Tcp_scan(ip string, port int) int {
 func Cdirgetter(cidr string) ([]string, error) {
 	var hosts []string
 	_, subnet, err := net.ParseCIDR(cidr)
+    if err != nil {
+        print("Please Input a valid CIDR in this format (192.168.1.1/24, 10.0.0.0/8)")
+        os.Exit(0)
+    }
 	mascara := binary.BigEndian.Uint32(subnet.Mask)
 	fAddr := binary.BigEndian.Uint32(subnet.IP)
 	lAddr := (fAddr & mascara) | (mascara ^ 0xffffffff)
@@ -84,7 +88,7 @@ func Cdirgetter(cidr string) ([]string, error) {
 }
 func Arpscan_lan(ips string) (string, string) {
 	ip := net.ParseIP(ips)
-	arping.SetTimeout(10 * time.Millisecond)
+	arping.SetTimeout(500 * time.Millisecond)
 	HwAddr, _, err := arping.Ping(ip)
 	mac := HwAddr.String()
 	if err == arping.ErrTimeout {

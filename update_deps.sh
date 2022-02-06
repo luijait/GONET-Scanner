@@ -1,5 +1,5 @@
 #!/bin/bash
 
-GOROOT=/usr/lib/go-1.17/src/
+GOROOT=$(go env | grep "GOROOT" | sed 's/\GOROOT="//g' | sed 's/\"//g')
 cp scan.go $GOROOT/scan/
 cp ports.go $GOROOT/ports/

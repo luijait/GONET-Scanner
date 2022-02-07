@@ -21,6 +21,15 @@
 
 ---
 
+# Install
+```
+chmod +x install.sh
+./install.sh [as root]
+```
+
+---
+
+
 # Usage
 ```
 [ARGUMENTS]

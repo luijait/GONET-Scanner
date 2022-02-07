@@ -52,13 +52,11 @@ func socket(ip string, port int) (socket string) {
 	return socket
 }
 
-func Tcp_scan(ip string, port int) int {
-	connection, err := net.DialTimeout("tcp", socket(ip, port), 50*time.Millisecond)
+func Tcp_scan(ip string, port int,timeout time.Duration) int {
+	connection, err := net.DialTimeout("tcp", socket(ip, port), timeout)
 	if err != nil {
 		if strings.Contains(err.Error(), "too many open files") {
-			time.Sleep(1 * time.Second)
-			print(err)
-			Tcp_scan(ip, port)
+			Tcp_scan(ip, port, timeout)
 		} else {
 			return 0
 		}

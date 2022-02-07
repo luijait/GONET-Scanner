@@ -16,7 +16,7 @@
 
 #ScreenShots
 
-<img src="https://user-images.githubusercontent.com/60628803/152821931-a2678f6c-c383-4939-9040-938d5f01defd.png)">
+<img src="https://user-images.githubusercontent.com/60628803/152821931-a2678f6c-c383-4939-9040-938d5f01defd.png">
 
 
 

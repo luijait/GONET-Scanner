@@ -7,8 +7,8 @@
  
  <div id="badges" align="center">
   <img src="https://img.shields.io/badge/%40author-luijait.es-informational">
-  <img src="https://img.shields.io/github/repo-size/luijait/GONET-Scanner?label=Size">
-  <img src="https://img.shields.io/github/languages/top/luijait/GONET-Scanner?label=go">
+  <img src="https://img.shields.io/github/repo-size/luijait/GONdET-Scanner?label=Size">
+  <img src="https://img.shields.io/github/languages/top/luijaitd/GONET-Scanner?label=go">
 </div>
 
 

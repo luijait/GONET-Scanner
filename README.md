@@ -19,4 +19,29 @@
 <img src="https://user-images.githubusercontent.com/60628803/152821931-a2678f6c-c383-4939-9040-938d5f01defd.png">
 <img src="https://user-images.githubusercontent.com/60628803/152824097-301c66b1-5248-4995-b1ee-1f509c1cb184.png">
 
+---
 
+# Usage
+```
+[ARGUMENTS]
+
+-ar CIDR: ARP Discovery
+-ar CIDR -s: Scan ports in all hosts discovered
+-ap: Scan to 65535 Ports
+-pr MINPORT MAXPORT: Define Port Range to Scan
+-1000: Scan Top 1000 ports (like nmap)
+-t: Set Timeout (in milliseconds)
+
+[EXAMPLES]
+
+go run scannerport.go -ap <IP>: Allports TCP Scan
+go run scannerport.go <IP> Default Scan 0-1024 ports
+go run scannerport.go  -ar 192.168.0.1/24 <IP>: ARP Ping Scan ALL local Subnet
+go run scannerport.go <IP> -pr <MINPORT> <MAXPORT>
+go run scannerport.go -ar 192.168.1.1/24 -s
+go run scannerport.go -1000 192.168.1.1
+go run scannerport.go -t 100 192.168.1.1
+Example: go run scannerport.go -ar 192.168.1.1/24 (will send an arp ping to every host of net to discover if is it up)
+Example: go run scannerport.go google.com -1000 (Will resolve google.com + Will scan top 1000 ports)
+Example: go run scannerport.go 192.168.0.1 -pr 100 3000 (will scan every port in these range you must put first minor port)
+```

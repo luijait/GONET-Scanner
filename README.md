@@ -54,3 +54,7 @@ Example: go run scannerport.go -ar 192.168.1.1/24 (will send an arp ping to ever
 Example: go run scannerport.go google.com -1000 (Will resolve google.com + Will scan top 1000 ports)
 Example: go run scannerport.go 192.168.0.1 -pr 100 3000 (will scan every port in these range you must put first minor port)
 ```
+
+---
+# Contributors
+Thanks to @ajaniramon for help in this project!

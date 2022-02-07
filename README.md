@@ -5,9 +5,9 @@
  ---
  <div id="badges" align="center">
   <img src="https://img.shields.io/badge/%40author-luijait.es-informational">
-  <img src="https://img.shields.io/github/downloads/c0br40x/b4cks0ck/total?label=Downloads">
-  <img src="https://img.shields.io/github/repo-size/c0br40x/b4cks0ck?label=Size">
-  <img src="https://img.shields.io/github/languages/top/luijait/GO/NET-Scanner?label=go">"
+  <img src="https://img.shields.io/github/downloads/luijait/GONET-Scanner/total?label=Downloads">
+  <img src="https://img.shields.io/github/repo-size/luijait/GONET-Scanner?label=Size">
+  <img src="https://img.shields.io/github/languages/top/luijait/GONET-Scanner?label=go">"
 
 
 

@@ -8,13 +8,13 @@
  <div id="badges" align="center">
   <img src="https://img.shields.io/badge/%40author-luijait.es-informational">
   <img src="https://img.shields.io/github/repo-size/luijait/GONET-Scanner?label=Size">
-  <img src="https://img.shields.io/github/languages/top/luijait/GONET-Scanner?label=go">"
+  <img src="https://img.shields.io/github/languages/top/luijait/GONET-Scanner?label=go">
 </div>
 
 
 ---
 
-#ScreenShots
+# ScreenShots
 
 <img src="https://user-images.githubusercontent.com/60628803/152821931-a2678f6c-c383-4939-9040-938d5f01defd.png">
 

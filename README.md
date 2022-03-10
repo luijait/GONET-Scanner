@@ -56,5 +56,67 @@ Example: go run scannerport.go 192.168.0.1 -pr 100 3000 (will scan every port in
 ```
 
 ---
+
+
+# Add Ports To Banner Grabbing
+Go to file `ports.go`
+```
+func Ports() map[int]string {
+	//Based in well known ports
+	ports := map[int]string{
+		1:     "echo",
+		9:     "WOL",
+		20:    "ftp data",
+		21:    "ftp control",
+		22:    "ssh",
+		23:    "telnet",
+		25:    "smtp",
+		43:    "whois",
+		49:    "TACACS",
+		53:    "DNS",
+		67:    "BOOTP",
+		69:    "TFTP",
+		70:    "Gopher",
+		71:    "NETRJS",
+		80:    "http",
+		81:    "TorPark",
+		82:    "TorPark",
+		88:    "Kerberos",
+		110:   "POP3",
+		115:   "sFTP",
+		143:   "imap",
+		220:   "imap3",
+		123:   "NTP",
+		135:   "RPC",
+		443:   "https",
+		445:   "Microsoft-ds, Samba",
+		465:   "SMTP over TLS",
+		514:   "Syslog",
+		520:   "RIP",
+		521:   "RIPng",
+		540:   "UUCP",
+		543:   "klogin",
+		544:   "kshell",
+		587:   "submission",
+		993:   "IMAP over TLS",
+		995:   "POP3 over TLS",
+		1433:  "Microsoft SQL Server",
+		3306:  "MySQL",
+		3389:  "rdp",
+		5432:  "postgres",
+		6667:  "irc",
+		25565: "minecraft server",
+	}
+	return ports
+```
+Just add port number & name of service
+Example:
+Add git
+```
+ 9418: "git",
+```
+
+---
 # Contributors
+Made by @luijait
 Thanks to @ajaniramon for help in this project!
